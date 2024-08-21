@@ -115,6 +115,17 @@ def greedy_simulate(pi,max_timestemp = 150):
             break
     return np.array(rewards).mean()
 
+
+class Linear_anneal:
+    def __init__(self, start, final, percentage):
+        self.start = start
+        self.final = final
+        self.percentage = percentage
+    
+    def get_value(self,t,T):
+        return linear_anneal(t, T, self.start, self.final, self.percentage)
+
+
 def test():
     n_timesteps = 50000
     gamma = 1.0
@@ -138,13 +149,4 @@ def test():
     
 if __name__ == '__main__':
     test()
-
-class Linear_anneal:
-    def __init__(self, start, final, percentage):
-        self.start = start
-        self.final = final
-        self.percentage = percentage
-    
-    def get_value(self,t,T):
-        return linear_anneal(t, T, self.start, self.final, self.percentage)
 

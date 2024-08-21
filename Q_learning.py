@@ -83,7 +83,7 @@ def q_learning(n_timesteps, learning_rate, gamma, policy='egreedy', epsilon=None
         a = pi.select_action(s,t,policy=policy,epsilon=epsilon,temp = temp, C=C)
         s_next,r,done = env.step(a)
         if plot:
-           env.render(Q_sa=pi.Q_sa,plot_optimal_policy=True,step_pause=0.1) # Plot the Q-value estimates during Q-learning execution
+           env.render(Q_sa=pi.Q_sa,plot_optimal_policy=True,step_pause=0.01) # Plot the Q-value estimates during Q-learning execution
 
         rewards.append(r)
         pi.update(s,a,r,s_next,done)
@@ -115,11 +115,19 @@ def greedy_simulate(pi,max_timestemp = 150):
             break
     return np.array(rewards).mean()
 
+class Linear_anneal:
+    def __init__(self, start, final, percentage):
+        self.start = start
+        self.final = final
+        self.percentage = percentage
+    
+    def get_value(self,t,T):
+        return linear_anneal(t, T, self.start, self.final, self.percentage)
 
 
 def test():
     
-    n_timesteps = 1000
+    n_timesteps = 100000
     gamma = 1.0
     learning_rate = 0.1
     
@@ -142,12 +150,4 @@ if __name__ == '__main__':
     test()
 
 
-class Linear_anneal:
-    def __init__(self, start, final, percentage):
-        self.start = start
-        self.final = final
-        self.percentage = percentage
-    
-    def get_value(self,t,T):
-        return linear_anneal(t, T, self.start, self.final, self.percentage)
 
