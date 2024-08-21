@@ -6,7 +6,7 @@ This repository contains implementations of various tabular reinforcement learni
 
 ## Features
 
-- **Dynamic Programming**: Implementations of policy evaluation and policy iteration methods.
+- **Dynamic Programming**: The agent has access to all properties of the environment 
 - **Model-Free Algorithms**: 
   - **SARSA**: On-policy temporal difference learning.
   - **Q-Learning**: Off-policy temporal difference learning.
